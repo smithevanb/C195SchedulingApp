@@ -12,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javax.swing.*;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class LoginViewController implements Initializable {
@@ -36,8 +37,10 @@ public class LoginViewController implements Initializable {
 
     @FXML
     void onLoginClicked(ActionEvent event) throws SQLException {
-        //Need to validity check password & username, shoot out an error message if invalid. UName & Pword
-        //probably belong in User model
+        /**
+         * Convert UsernameField and PasswordField to String, and then pass them to loginMatch method,
+         * to verify the user's login attempt.
+         */
         try {
             String username = UsernameField.getText();
             String password = PasswordField.getText();
@@ -62,6 +65,6 @@ public class LoginViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        Locale.getDefault();
     }
 }
