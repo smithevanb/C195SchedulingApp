@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+
 public class LoginViewController implements Initializable {
 
 
@@ -65,6 +66,7 @@ public class LoginViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Locale.getDefault();
+        String zone = String.valueOf(Locale.getDefault().getCountry());
+        ZoneId.setText(zone);
     }
 }

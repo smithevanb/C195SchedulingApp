@@ -25,42 +25,38 @@ public abstract class UserLogin {
         ResultSet rs = ps.executeQuery();
 
         try{
-            while(rs.next()){
+            if(rs.next()){
                 String pword = rs.getString("Password");
                 if(password.equals(pword)) {
                     System.out.println("Login Successful!");
+
                 }
                 else {
                     Alert a = new Alert(Alert.AlertType.ERROR);
                     //Do a check for current Local, then display appropriate text
                     if(Locale.getDefault().getLanguage().equals("fr")){ //French Locale is set, and French is true
-                        a.setContentText(Main.rb.getString("Login-error"));
-                        a.showAndWait();
+                        StringAlert.stringToAlert(Main.rb.getString("Login-error"), Alert.AlertType.ERROR);
                     }
 
                     else if(Locale.getDefault().getLanguage().equals("en")){ //English
-                        a.setContentText(Main.rb.getString("Login-error"));
-                        a.showAndWait();
+                        StringAlert.stringToAlert(Main.rb.getString("Login-error"), Alert.AlertType.ERROR);
                     }
                 }
             }
-            if(!rs.next()) { //if the username doesn't match, or if any field is empty
-                Alert a = new Alert(Alert.AlertType.ERROR);
+            else if(!rs.next()) { //if the username doesn't match, or if any field is empty
                 //Do a check for current Local, then display appropriate text
                 if(Locale.getDefault().getLanguage().equals("fr")){ //French Locale is set, and French is true
-                    a.setContentText(Main.rb.getString("Login-error"));
-                    a.showAndWait();
+                    StringAlert.stringToAlert(Main.rb.getString("Login-error"), Alert.AlertType.ERROR);
                 }
 
                 else if(Locale.getDefault().getLanguage().equals("en")){ //English
-                    a.setContentText(Main.rb.getString("Login-error"));
-                    a.showAndWait();
+                    StringAlert.stringToAlert(Main.rb.getString("Login-error"), Alert.AlertType.ERROR);
                 }
             }
         }
-        catch(SQLException e) {
+        catch(Exception e) {
             Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("Login Failed");
+            a.setContentText("Login?!? Failed");
             a.showAndWait();
             //JOptionPane.showMessageDialog(null,"Error in Connectivity: " +e.getMessage());
             System.out.println("Login Failed!");
